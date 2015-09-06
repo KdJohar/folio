@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.sqlite3
+*.sqlite
+*.pyc
+*.xml
+local_settings.py
+.idea/
