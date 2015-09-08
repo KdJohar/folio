@@ -4,7 +4,7 @@ from django.db import models
 
 class GetBook(models.Model):
     'Keeps track of it books from https://it-ebooks.info/'
-    title = models.CharField(max_length=250)
+    title = models.CharField(max_length=250, unique=True)
     url = models.URLField(unique=True)
 
     class Meta:
