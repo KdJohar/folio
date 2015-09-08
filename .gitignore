@@ -5,3 +5,4 @@
 *.xml
 local_settings.py
 .idea/
+static
