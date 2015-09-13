@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.urlresolvers import reverse
 # Create your models here.
 
 class GetBook(models.Model):
@@ -29,3 +29,6 @@ class Book(models.Model):
 
     class Meta:
         ordering = ['date']
+
+    def get_absolute_url(self):
+        return reverse ('itbook_detail', kwargs={'slug': self.slug})

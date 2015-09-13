@@ -1,0 +1,52 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en" > <!--<![endif]-->
+ 
+  <head>
+    {% include 'base/meta.html' %}
+    <!-- Bootstrap core CSS -->
+    {% include 'base/scripts.html' %}
+  </head>
+
+  <body>
+    {% include 'base/navbar.html' %}
+	
+	{% include 'base/searchform.html' %}
+
+ 	<div class="content-wrapper">  
+		<section class="middle">
+			 <div class="container">
+			 	<div class="row"> 
+			 		
+			 		<!-- Start content-block column-->
+			 		<div class="col-sm-12 col-md-9 col-md-push-3"> 
+			 			{% block maincontent %}
+                        {% endblock %}
+			 		</div><!-- End content-block column-->
+			 		
+			 		<!-- Start sidebar Column-->
+			 		<div class="col-sm-12 col-md-3 col-md-pull-9">
+			 			{% include 'base/sidebar.html' %}
+			 		</div><!-- End  sidebar Column-->
+			 	</div> <!-- End .row-->
+			 </div><!-- End .container-->
+		 </section>  <!-- End .middle-->
+
+        {% include 'base/footer.html' %}
+	</div>
+    <!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster --> 
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="{% static "js/jquery.min.js" %}"><\/script>')
+	</script>
+	<script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/jquery.cookie.js" %}"></script>
+	<script src="{% static "js/custom.js" %}"></script>
+	
+  </body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% block maincontent %}
+    <div class="headline">
+         <h1>{{ book.title }}</h1>
+     </div>
+    <div class="col-md-5 col-sm-4">
+        <div class="blog-img clearfix no-flip">
+                <a href="single-post-left.html">
+                    <img src="{{ book.image }}" alt="" class="img-responsive" />
+                    <div class="image-overlay-bg">
+                        <div class="image-overlay-link"> </div>
+                    </div>
+                </a>
+            </div>
+    </div>
+    <div class="col-md-7 col-sm-8">
+            <p>
+                <h3>Desctiption:</h3>{{ book.description }}
+            </p>
+            <p>
+                <h3>Author:</h3>{{ book.author }}
+            </p>
+            <p>
+                <h3>Publisher:</h3>{{ book.publisher }}
+            </p>
+            <p>
+                <h3>pages:</h3>{{ book.language }}
+            </p>
+        <a href="{{ book.download }}" class="btn btn-theme"> Download</a>
+    </div>
+{% endblock %}
