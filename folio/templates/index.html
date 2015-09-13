@@ -55,7 +55,7 @@
         <ul class="portfolio thumbnails clearfix no-flip" >
             {% for book in recent_books %}
             <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                <a href="project-details.html">
+                <a href="{{ book.get_absolute_url }}">
                     <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
                     <div class="image-overlay-bg">
                         <div class="image-overlay-link"> </div>
