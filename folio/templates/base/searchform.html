@@ -3,14 +3,14 @@
         <div class="row" style="padding-top: 10px;">
             <div class="col-md-3 col-sm-12">
             </div>
-            <div class="col-md-6 col-sm-12">
-                <form>
-                    <input type="text" class="form-control" id="Input" placeholder="Enter book name ...">
-                </form>
-            </div>
-            <div class="col-md-3 col-sm-12 theme-download-btn">
-                <a href="#" class="btn btn-theme fa fa-search">Search</a>
-            </div>
+            <form action="{% url 'home' %}" method="post">{% csrf_token %}
+                <div class="col-md-6 col-sm-12">
+                    <input type="text" class="form-control" name="search" placeholder="Enter the book name ...">
+                </div>
+                <div class="col-md-3 col-sm-12 theme-download-btn">
+                    <input type="submit" class="btn btn-theme fa fa-search"> </input>
+                </div>
+            </form>
         </div>
     </div>
 </div> <!-- /.header-bottom -->
