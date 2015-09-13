@@ -32,3 +32,9 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse ('itbook_detail', kwargs={'slug': self.slug})
+
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return self.name
