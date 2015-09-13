@@ -38,3 +38,10 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.name
+
+class SearchTag(models.Model):
+    name = models.CharField(max_length=250)
+    date = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return self.name
