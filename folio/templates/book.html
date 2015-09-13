@@ -5,21 +5,11 @@
      </div>
     <div class="col-md-5 col-sm-4">
         <div class="blog-img clearfix no-flip">
-               <ul class="portfolio thumbnails clearfix no-flip" >
-                    <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                        <a href="project-details.html">
-                            <img src="{{ book.image }}" alt="" class="img-responsive">
-                            <div class="image-overlay-bg">
-                                <div class="image-overlay-link"> </div>
-                            </div>
-                        </a>
-                        <div class="rw-details text-center">
-                            <h5>Venenatis Lobortis</h5>
-                            <p>In rutrum nibh arcu sit amet lae</p>
-                        </div>
-                    </li>
-               </ul>
-        </div>
+                <a href="single-post-left.html">
+                    <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width: 200px;height: 231px;" />
+
+                </a>
+            </div>
     </div>
     <div class="col-md-7 col-sm-8">
             <p>
@@ -32,7 +22,7 @@
                 <h3>Publisher:</h3>{{ book.publisher }}
             </p>
             <p>
-                <h3>pages:</h3>{{ book.language }}
+                <h3>Language:</h3>{{ book.language }}
             </p>
         <a href="{{ book.download }}" class="btn btn-theme"> Download</a>
     </div>
