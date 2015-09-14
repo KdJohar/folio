@@ -26,14 +26,3 @@ def itbook_detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
     title = book.title
     return render_to_response('book.html', locals(), context_instance=RequestContext(request))
-
-
-def itbook_sitemap(Sitemap):
-    changefreq = "daily"
-    priority = 1.0
-
-    def items(self):
-        return Book.objects.all()
-
-    def lastmod(self, obj):
-        return obj.date
