@@ -18,6 +18,12 @@ from django.contrib import admin
 from rest_framework.routers import DefaultRouter
 from itbooks import viewsets
 from django.conf import settings
+from django.http import HttpResponse
+from itbooks.views import itbook_sitemap
+
+sitemaps = {
+    'books': itbook_sitemap
+}
 
 router = DefaultRouter()
 
@@ -29,6 +35,7 @@ urlpatterns = [
     url(r'^api/1/', include(router.urls)),
     url(r'^$', 'itbooks.views.home', name='home'),
     url(r'^itbook/(?P<slug>[\w-]+)/$', 'itbooks.views.itbook_detail', name='itbook_detail'),
+
 ]
 
 urlpatterns += patterns('', (
