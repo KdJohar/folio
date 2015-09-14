@@ -5,6 +5,7 @@ from .forms import SearchForm
 # Create your views here.
 
 def home(request):
+    title = 'Download Free Books'
     books = Book.objects.all().order_by('?')[:12]
     recent_books = Book.objects.all().order_by('-date')[:8]
     form = SearchForm(request.POST)
@@ -21,4 +22,5 @@ def home(request):
 
 def itbook_detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
+    title = book.title
     return render_to_response('book.html', locals(), context_instance=RequestContext(request))
