@@ -5,6 +5,7 @@
     <div class="headline">
          <h1>{{ book.title }}</h1>
      </div>
+    {% include 'base/googleadds/homepage1.html' %}
     <div class="col-md-5 col-sm-4">
         <div class="blog-img clearfix no-flip" style="width: 200px;height: 231px;">
                 <a href="single-post-left.html">
@@ -12,6 +13,8 @@
 
                 </a>
             </div>
+        {% include 'base/googleadds/homepage3.html' %}
+        
     </div>
     <div class="col-md-7 col-sm-8">
             <p>
@@ -28,4 +31,5 @@
             </p>
         <a href="{{ book.download }}" class="btn btn-theme"> Download</a>
     </div>
+
 {% endblock %}

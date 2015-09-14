@@ -23,19 +23,19 @@
 			 	<div class="row"> 
 			 		
 			 		<!-- Start content-block column-->
-			 		<div class="col-sm-12 col-md-9 col-md-push-3"> 
+			 		<div class="col-sm-12 col-md-8 col-md-push-4">
 			 			{% block maincontent %}
                         {% endblock %}
 			 		</div><!-- End content-block column-->
 			 		
 			 		<!-- Start sidebar Column-->
-			 		<div class="col-sm-12 col-md-3 col-md-pull-9">
+			 		<div class="col-sm-12 col-md-4 col-md-pull-8">
 			 			{% include 'base/sidebar.html' %}
 			 		</div><!-- End  sidebar Column-->
 			 	</div> <!-- End .row-->
 			 </div><!-- End .container-->
 		 </section>  <!-- End .middle-->
-
+        {% include 'base/googleadds/homepage3.html' %}
         {% include 'base/footer.html' %}
 	</div>
     <!-- Bootstrap core JavaScript
