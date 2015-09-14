@@ -11,6 +11,8 @@ def home(request):
     if form.is_valid():
         search_query = form.cleaned_data['search']
         books =  Book.objects.filter(title__icontains=search_query)
+        if not books:
+            books = None
         SearchTag.objects.create(name=search_query)
     else:
         return render_to_response('index.html', locals(), context_instance=RequestContext(request))

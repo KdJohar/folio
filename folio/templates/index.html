@@ -30,6 +30,8 @@
         </div>
 
         <ul class="portfolio thumbnails clearfix no-flip" >
+
+
             {% for book in books %}
             <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
                 <a href="{{ book.get_absolute_url }}">
@@ -45,6 +47,10 @@
             </li>
 
             {% endfor %}
+
+        {% if books == None %}
+        <h3>Sorry No Books Found</h3>
+        {% endif %}
         </ul>
     </div><!-- End .content-block-->
     <hr />
