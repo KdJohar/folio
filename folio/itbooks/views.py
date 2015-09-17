@@ -9,7 +9,7 @@ from django.contrib.sitemaps import Sitemap
 def home(request):
     title = 'Download Free Books'
     books = Book.objects.all().order_by('?')[:12]
-    recent_books = Book.objects.all().order_by('-date')[:8]
+    recent_books = Book.objects.all().order_by('-date')[:16]
     form = SearchForm(request.POST)
     if form.is_valid():
         search_query = form.cleaned_data['search']
