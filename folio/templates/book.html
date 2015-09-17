@@ -30,7 +30,13 @@
             <p>
                 <h3>Language:</h3>{{ book.language }}
             </p>
+         <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
+<script type="text/javascript">
+GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn10 }}');
+</script>
         <a href="{{ book.download }}" class="btn btn-theme"> Download</a>
     </div>
+
+
 
 {% endblock %}
