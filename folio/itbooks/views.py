@@ -1,8 +1,6 @@
 from django.shortcuts import render_to_response
 from .models import Book, SearchTag
 from django.shortcuts import RequestContext, get_object_or_404
-from .forms import SearchForm
-from django.contrib.sitemaps import Sitemap
 
 # Create your views here.
 
@@ -10,15 +8,6 @@ def home(request):
     title = 'Download Free Books'
     books = Book.objects.all().order_by('?')[:12]
     recent_books = Book.objects.all().order_by('-date')[:16]
-    form = SearchForm(request.POST)
-    if form.is_valid():
-        search_query = form.cleaned_data['search']
-        books =  Book.objects.filter(title__icontains=search_query)
-        if not books:
-            books = None
-        SearchTag.objects.create(name=search_query)
-    else:
-        return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
     return render_to_response('index.html', locals(), context_instance=RequestContext(request))
 
@@ -30,3 +19,29 @@ def itbook_detail(request, slug):
 def google_search(request):
     title = 'google search'
     return render_to_response('googlesearch.html', locals(), context_instance=RequestContext(request))
+
+
+def search_result(request):
+    recent_books = Book.objects.all().order_by('-date')[:16]
+    search_query = request.GET.get('query', '')
+    title = 'search '+search_query
+    if len(search_query) == 0:
+        title = 'Error'
+        error = 1
+        heading = 'Error: Empty Query'
+        return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
+
+    if len(search_query) <= 2:
+        title = 'Error'
+        error = 2
+        heading = 'Error: Not Enough Characters'
+        return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
+
+    heading = 'Results for '+search_query
+    meta_description = '%s books in folio.co.in'%search_query
+    books =  Book.objects.filter(title__icontains=search_query)
+    if not books:
+        books = None
+    SearchTag.objects.create(name=search_query)
+
+    return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))

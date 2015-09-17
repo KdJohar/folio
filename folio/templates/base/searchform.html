@@ -3,9 +3,9 @@
         <div class="row" style="padding-top: 10px;">
             <div class="col-md-3 col-sm-12">
             </div>
-            <form action="{% url 'home' %}" method="post">{% csrf_token %}
+            <form action="{% url 'search_results' %}" method="get">
                 <div class="col-md-6 col-sm-12">
-                    <input type="text" class="form-control" name="search" placeholder="Enter the book name ...">
+                    <input type="text" class="form-control" name="query" placeholder="Enter the book name ...">
                 </div>
                 <div class="col-md-3 col-sm-12 theme-download-btn">
                     <input type="submit" class="btn btn-theme fa fa-search"> </input>
