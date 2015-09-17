@@ -8,52 +8,43 @@
         {% include 'base/googleadds/homepage1.html' %}
      <div class="content-block portfolio-block clearfix portfolio-col-4">
         <div class="clearfix">
-            <!--
+
             <ul id="filtrable" class="clearfix" >
-               <li ><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
-                <li><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
-                <li><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
+               {% for tag in tags %}
+                <li ><a href="http://127.0.0.1:8000/search/?query={{ tag.name }}" class="all">{{ tag.name }}</a></li>
+                {% endfor %}
             </ul>
-            -->
+
         </div>
 
         <ul class="portfolio thumbnails clearfix no-flip" >
-            {% if books == None %}
-                Sorry No Books Found
-            {% endif %}
+
             {% if error == 1 %}
                 Please Enter a book name or a category name
 
             {% elif error == 2 %}
                 Please Enter Search Query More Than 3 Characters
             {% else %}
-                {% for book in page.object_list %}
-                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                    <a href="{{ book.get_absolute_url }}">
-                        <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
-                        <div class="image-overlay-bg">
-                            <div class="image-overlay-link"> </div>
+                {% if not page.object_list %}
+                    Sorry No Books Found
+                {% else %}
+                    {% for book in page.object_list %}
+                    <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
+                        <a href="{{ book.get_absolute_url }}">
+                            <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
+                            <div class="image-overlay-bg">
+                                <div class="image-overlay-link"> </div>
+                            </div>
+                        </a>
+                        <div class="rw-details text-center">
+                            <h5>{{ book.title|truncatechars:25 }}</h5>
                         </div>
-                    </a>
-                    <div class="rw-details text-center">
-                        <h5>{{ book.title|truncatechars:25 }}</h5>
-                    </div>
 
-                </li>
+                    </li>
 
-                {% endfor %}
+                    {% endfor %}
+
+                {% endif %}
 
 
             {% endif %}

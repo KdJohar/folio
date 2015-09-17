@@ -8,25 +8,13 @@
         {% include 'base/googleadds/homepage1.html' %}
      <div class="content-block portfolio-block clearfix portfolio-col-4">
         <div class="clearfix">
-            <!--
+
             <ul id="filtrable" class="clearfix" >
-               <li ><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
-                <li><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
-                <li><a href="#" class="all">All</a></li>
-               <li ><a href="#" class="html">Html</a></li>
-               <li ><a href="#" class="foundation">Foundation</a></li>
-               <li > <a href="#" class="php">PHP</a></li>
-               <li ><a href="#" class="bootstrap">Bootstrap</a></li>
+                {% for tag in tags%}
+               <li ><a href="http://127.0.0.1:8000/search/?query={{ tag.name }}" class="all">{{ tag.name }}</a></li>
+                {% endfor %}
             </ul>
-            -->
+
         </div>
 
         <ul class="portfolio thumbnails clearfix no-flip" >
