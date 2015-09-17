@@ -26,3 +26,7 @@ def itbook_detail(request, slug):
     book = get_object_or_404(Book, slug=slug)
     title = book.title
     return render_to_response('book.html', locals(), context_instance=RequestContext(request))
+
+def google_search(request):
+    title = 'google search'
+    return render_to_response('googlesearch.html', locals(), context_instance=RequestContext(request))

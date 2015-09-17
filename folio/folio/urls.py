@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^api/1/', include(router.urls)),
     url(r'^$', 'itbooks.views.home', name='home'),
     url(r'^itbook/(?P<slug>[\w-]+)/$', 'itbooks.views.itbook_detail', name='itbook_detail'),
+    url(r'^google/$', 'itbooks.views.google_search', name='google_search'),
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
 ]
