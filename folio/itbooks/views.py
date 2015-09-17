@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from .models import Book, SearchTag
 from django.shortcuts import RequestContext, get_object_or_404
-
+from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
@@ -36,12 +36,24 @@ def search_result(request):
         error = 2
         heading = 'Error: Not Enough Characters'
         return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
-
+    SearchTag.objects.create(name=search_query)
     heading = 'Results for '+search_query
     meta_description = '%s books in folio.co.in'%search_query
     books =  Book.objects.filter(title__icontains=search_query)
+    paginator = Paginator(books, 12)
+    page_num = request.GET.get('page', 1)
+    page = paginator.page(page_num)
+
     if not books:
         books = None
-    SearchTag.objects.create(name=search_query)
+        return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
 
-    return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
+
+    ctx = {
+        'query': search_query,
+        'title' : title,
+        'page' : page,
+        'heading' : heading,
+        'meta_description' : meta_description
+    }
+    return render_to_response('searchresults.html', ctx, context_instance=RequestContext(request))

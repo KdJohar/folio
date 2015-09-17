@@ -30,14 +30,16 @@
         </div>
 
         <ul class="portfolio thumbnails clearfix no-flip" >
-
+            {% if books == None %}
+                Sorry No Books Found
+            {% endif %}
             {% if error == 1 %}
                 Please Enter a book name or a category name
 
             {% elif error == 2 %}
                 Please Enter Search Query More Than 3 Characters
             {% else %}
-                {% for book in books %}
+                {% for book in page.object_list %}
                 <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
                     <a href="{{ book.get_absolute_url }}">
                         <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
@@ -53,11 +55,32 @@
 
                 {% endfor %}
 
-                {% if books == None %}
-                <h3>Sorry No Books Found</h3>
-                {% endif %}
+
             {% endif %}
         </ul>
+        {% if page %}
+        <ul class="portfolio thumbnails clearfix no-flip" >
+
+                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
+                    {% if page.has_previous %}
+                        <a href="?query={{ query }}&page={{ page.previous_page_number }}">previous</a>
+                    {% endif %}
+                </li>
+                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
+
+                </li>
+                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
+
+                </li>
+                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
+                    {% if page.has_next %}
+                        <a href="?query={{ query }}&page={{ page.next_page_number }}">next</a>
+                    {% endif %}
+                </li>
+
+        </ul>
+        {% endif %}
+
     </div><!-- End .content-block-->
     <hr />
      <div class="headline">
