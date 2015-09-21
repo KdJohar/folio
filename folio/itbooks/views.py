@@ -46,6 +46,7 @@ def search_result(request):
     page = paginator.page(page_num)
 
     ctx = {
+        'recent_books':recent_books,
         'tags':tags,
         'query': search_query,
         'title' : title,
