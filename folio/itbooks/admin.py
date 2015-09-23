@@ -16,7 +16,7 @@ class BookAdmin(admin.ModelAdmin):
 
 class SearchAdmin(admin.ModelAdmin):
 
-    list_display = ('name',)
+    list_display = ('name', 'date', )
     list_filter = ('date',)
 
 admin.site.register(Book, BookAdmin)
