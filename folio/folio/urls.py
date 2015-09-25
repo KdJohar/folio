@@ -30,7 +30,7 @@ router.register(r'getbook', viewsets.GetBookViewset)
 router.register(r'book', viewsets.BookViewset)
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^folio-admin/', include(admin.site.urls)),
     url(r'^api/1/', include(router.urls)),
     url(r'^$', 'itbooks.views.home', name='home'),
     url(r'^itbook/(?P<slug>[\w-]+)/$', 'itbooks.views.itbook_detail', name='itbook_detail'),
