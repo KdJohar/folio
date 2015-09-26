@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^itbook/(?P<slug>[\w-]+)/$', 'itbooks.views.itbook_detail', name='itbook_detail'),
     url(r'^google/$', 'itbooks.views.google_search', name='google_search'),
     url(r'^search/$', 'itbooks.views.search_result', name='search_results'),
+    url(r'^autocomplete/$', 'itbooks.views.autocomplete', name='autocomplete'),
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
 ]
