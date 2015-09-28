@@ -54,7 +54,9 @@
 
                 <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
                     {% if page.has_previous %}
-                        <a href="?query={{ query }}&page={{ page.previous_page_number }}">previous</a>
+                        <a href="?query={{ query }}&page={{ page.previous_page_number }}">
+                        <button type="button" class="btn btn-primary btn-sm" data-iceapw="1" style="background-color: #F45672;border-color: #F45672;">previous</button>
+                        </a>
                     {% endif %}
                 </li>
                 <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
@@ -65,7 +67,9 @@
                 </li>
                 <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
                     {% if page.has_next %}
-                        <a href="?query={{ query }}&page={{ page.next_page_number }}">next</a>
+                        <a href="?query={{ query }}&page={{ page.next_page_number }}">
+                        <button type="button" class="btn btn-primary btn-sm" data-iceapw="1" style="background-color: #F45672;border-color: #F45672;">next</button>
+                        </a>
                     {% endif %}
                 </li>
 
