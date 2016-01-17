@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+
+{% block main_content %}
+<section id="content">
+
+
+        <div class="container">
+
+            <div class="card">
+
+
+                <div class="card-body card-padding">
+                    <div class="jumbotron">
+                        <h1>Welcome to Folio!</h1>
+
+                        <p>
+                            Folio is a website designed to provide its users with free e-books. With a strong database
+                            of 6000+ top quality I.T. books, Folio is one of the best directory of free e-books one can
+                            find online.
+
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Search Tags
+                        <small>You can simply search for specifin......
+                        </small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+
+                    <div class="btn-demo">
+                        {% for tag in tags %}
+                        <button class="btn btn-default btn-icon-text" style="margin-bottom: 10px;"><i class="zmdi zmdi-tag"></i>{{ tag.name }}</button>
+                       {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <div class="block-header">
+                <h2>Books</h2>
+            </div>
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-header bgm-cyan m-b-20">
+                                <h2>{{ book.title|truncatechars:20 }}</h2>
+                                <ul class="actions actions-alt">
+                                    <li class="dropdown">
+                                        <a href="" data-toggle="dropdown">
+                                            <i class="zmdi zmdi-share"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-facebook zmdi-hc-2x"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-twitter zmdi-hc-2x"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-linkedin zmdi-hc-2x"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <a href="{{ book.get_absolute_url }}">
+                                    <button class="btn bgm-deeporange btn-float waves-effect"><i class="zmdi zmdi-download"></i>
+                                </button>
+                                </a>
+
+                            </div>
+
+                            <div class="card-body card-padding">
+                                <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive"
+                                     style="height:231px;width: 180px;margin-left: 15px;">
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <a href="{% url 'itbooks' %}"><button class="btn btn-default btn-icon-text">load more</button></a> <br />
+            <div class="col-sm-6">
+                <div class="fb-comments" data-href="http://folio.co.in/" data-numposts="5"></div>
+            </div>
+            <div class="col-sm-6">
+                <div class="fb-page" data-href="https://www.facebook.com/folio.co.in/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><div class="fb-xfbml-parse-ignore"><blockquote cite="https://www.facebook.com/folio.co.in/"><a href="https://www.facebook.com/folio.co.in/">folio.co.in</a></blockquote></div></div>
+            </div>
+
+        </div>
+
+
+    </section>
+{% endblock %}
