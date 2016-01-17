@@ -25,14 +25,14 @@
                 </div>
             </div>
             <div class="block-header">
-                <h2>Search Results :- {{ query }}</h2>
+                <h2>Search Results :- {{ query }}({{ count }})</h2>
             </div>
             <div class="row">
                 {% for book in page.object_list %}
                     <div class="col-sm-3">
                         <div class="card">
                             <div class="card-header bgm-cyan m-b-20">
-                                <h2>{{ book.title|truncatechars:20 }}</h2>
+                                <h2>{{ book.object.title|truncatechars:20 }}</h2>
                                 <ul class="actions actions-alt">
                                     <li class="dropdown">
                                         <a href="" data-toggle="dropdown">
@@ -53,7 +53,7 @@
                                     </li>
                                 </ul>
 
-                                <a href="{{ book.get_absolute_url }}">
+                                <a href="{{ book.object.get_absolute_url }}">
                                     <button class="btn bgm-deeporange btn-float waves-effect"><i
                                             class="zmdi zmdi-download"></i>
                                     </button>
@@ -62,7 +62,7 @@
                             </div>
 
                             <div class="card-body card-padding">
-                                <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive"
+                                <img src="{{ book.object.image }}" alt="{{ book.object.title }}" class="img-responsive"
                                      style="height:231px;width: 180px;margin-left: 15px;">
 
                             </div>
@@ -70,31 +70,32 @@
 
                     </div>
                 {% endfor %}
-                {% if page %}
 
-                    <ul class="pagination">
-                        {% if page.has_previous %}
-                            <li>
-                                <a href="?query={{ query }}&page={{ page.previous_page_number }}" aria-label="Previous"
-                                   style="background-color: #00BCD4;">
-                                    <i class="zmdi zmdi-chevron-left" style="color: antiquewhite;"></i>
-                                </a>
-                            </li>
-                        {% endif %}
-
-                        {% if page.has_next %}
-                            <li>
-                                <a href="?query={{ query }}&page={{ page.next_page_number }}" aria-label="Next"
-                                   style="background-color: #00BCD4;">
-                                    <i class="zmdi zmdi-chevron-right" style="color: antiquewhite;"></i>
-                                </a>
-                            </li>
-                        {% endif %}
-                    </ul>
-
-                {% endif %}
 
             </div>
+            {% if page %}
+
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li>
+                            <a href="?query={{ query }}&page={{ page.previous_page_number }}" aria-label="Previous"
+                               style="background-color: #00BCD4;">
+                                <i class="zmdi zmdi-chevron-left" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if page.has_next %}
+                        <li>
+                            <a href="?query={{ query }}&page={{ page.next_page_number }}" aria-label="Next"
+                               style="background-color: #00BCD4;">
+                                <i class="zmdi zmdi-chevron-right" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            {% endif %}
 
         </div>
 
