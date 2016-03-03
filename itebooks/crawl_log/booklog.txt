@@ -1,0 +1,4 @@
+Total books fetched today - 6922
+Total new books fetched today - 0
+Total new books details fetched today - 0
+Duration: 0:02:03.611810
