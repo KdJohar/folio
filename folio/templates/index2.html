@@ -36,10 +36,10 @@
                                 </div>
 
                                 <div class="hide-on-med-and-up">
-                                    <a><h5 style="text-align: left"><b>{{ book.title }}</b></h5></a>
+                                    <a href="{{ book.get_absolute_url }}"><h5 style="text-align: left"><b>{{ book.title }}</b></h5></a>
                                 </div>
                                 <div class="hide-on-small-only">
-                                    <a><h5><b> {{ book.title }}</b></h5></a>
+                                    <a href="{{ book.get_absolute_url }}"><h5><b> {{ book.title }}</b></h5></a>
                                 </div>
                                 <div class="hide-on-small-only">
                                     <p style="text-align: left;font-size: larger;">

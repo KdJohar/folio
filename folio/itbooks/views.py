@@ -32,7 +32,7 @@ def search_result(request):
     if not search_query == ' ':
         SearchTag.objects.create(name=search_query)
         books = SearchQuerySet().filter(title=AutoQuery(search_query)).load_all()
-        paginator = Paginator(books, 12)
+        paginator = Paginator(books, 10)
         page_num = request.GET.get('page', 1)
         page = paginator.page(page_num)
     ctx = {

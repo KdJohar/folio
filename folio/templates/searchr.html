@@ -9,7 +9,7 @@
     <!--start container-->
     <div class="container">
         <div class="section">
-                <h5>Results for - {{ query }}({{ count }})</h5>
+            <h5>Results for - {{ query }}({{ count }})</h5>
             <div class="hide-on-med-and-up">
                 <br>
 
@@ -37,10 +37,12 @@
                                 </div>
 
                                 <div class="hide-on-med-and-up">
-                                    <a href="{{ book.object.get_absolute_url }}"><h5 style="text-align: left"><b>{{ book.object.title }}</b></h5></a>
+                                    <a href="{{ book.object.get_absolute_url }}"><h5 style="text-align: left">
+                                        <b>{{ book.object.title }}</b></h5></a>
                                 </div>
                                 <div class="hide-on-small-only">
-                                    <a href="{{ book.object.get_absolute_url }}"><h5><b> {{ book.object.title }}</b></h5></a>
+                                    <a href="{{ book.object.get_absolute_url }}"><h5><b> {{ book.object.title }}</b>
+                                    </h5></a>
                                 </div>
                                 <div class="hide-on-small-only">
                                     <p style="text-align: left;font-size: larger;">
@@ -58,6 +60,31 @@
 
             {% endfor %}
         </div>
+        {% if page %}
+            <div style="text-align: center">
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li>
+                            <a class="btn-floating btn-large waves-effect waves-light red"
+                               href="?query={{ query }}&page={{ page.previous_page_number }}" aria-label="Previous">
+                                <i class="zmdi zmdi-chevron-left" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if page.has_next %}
+                        <li>
+                            <a class="btn-floating btn-large waves-effect waves-light red"
+                               href="?query={{ query }}&page={{ page.next_page_number }}" aria-label="Next">
+                                <i class="zmdi zmdi-chevron-right" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+        {% endif %}
     </div>
 
 
