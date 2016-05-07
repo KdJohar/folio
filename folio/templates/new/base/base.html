@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 3.1
+	Author: GeeksLabs
+	Author URL: http://www.themeforest.net/user/geekslabs
+================================================================================ -->
+
+<head>
+    {% include 'new/base/seo.html/' %}
+    <!-- Favicons-->
+    <link rel="icon" href="/static/ecommerce/images/favicon/favicon-32x32.png" sizes="32x32">
+    <!-- Favicons-->
+    <link rel="apple-touch-icon-precomposed" href="/static/ecommerce/images/favicon/apple-touch-icon-152x152.png">
+    <!-- For iPhone -->
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="/static/ecommerce/images/favicon/mstile-144x144.png">
+    <!-- For Windows Phone -->
+
+
+    <!-- CORE CSS-->
+    {% include 'new/base/css.html' %}
+
+
+</head>
+
+<body>
+<!-- Start Page Loading -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+</div>
+<!-- End Page Loading -->
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START HEADER -->
+{% include 'new/base/header.html' %}
+
+<!-- END HEADER -->
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START MAIN -->
+<div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+        <!-- START LEFT SIDEBAR NAV-->
+        {% include 'new/base/sidebar.html' %}
+        <!-- END LEFT SIDEBAR NAV-->
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+        <!-- START CONTENT -->
+        <section id="content">
+        <div class="header-search-wrapper grey hide-on-large-only" style="z-index: 2;position: fixed;">
+            <i class="mdi-action-search active"></i>
+            <input type="text" name="Search" class="header-search-input z-depth-2" placeholder="Search">
+        </div>
+            {% block main_content %}
+            {% endblock %}
+            <!--breadcrumbs start-->
+                        <!--end container-->
+        </section>
+
+        <!-- END CONTENT -->
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+        <!-- START RIGHT SIDEBAR NAV-->
+        {% include 'new/base/sidecart.html' %}
+        <!-- LEFT RIGHT SIDEBAR NAV-->
+
+    </div>
+    <!-- END WRAPPER -->
+
+</div>
+<!-- END MAIN -->
+
+
+<!-- //////////////////////////////////////////////////////////////////////////// -->
+
+<!-- START FOOTER -->
+{% include 'new/base/footer.html' %}
+<!-- END FOOTER -->
+
+
+<!-- ================================================
+Scripts
+================================================ -->
+
+<!-- jQuery Library -->
+{% include 'new/base/scripts.html' %}
+
+
+{% include 'new/base/notification.html' %}
+
+
+</body>
+
+</html>

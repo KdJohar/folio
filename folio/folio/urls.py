@@ -33,7 +33,6 @@ urlpatterns = [
     url(r'^folio-admin/', include(admin.site.urls)),
     url(r'^api/1/', include(router.urls)),
     url(r'^$', 'itbooks.views.home', name='home'),
-    url(r'^itbooks/$', 'itbooks.views.itbooks', name='itbooks'),
     url(r'^itbooks/(?P<slug>[\w-]+)/$', 'itbooks.views.itbook_detail', name='itbook_detail'),
     url(r'^google/$', 'itbooks.views.google_search', name='google_search'),
     url(r'^search/$', 'itbooks.views.search_result', name='search_results'),

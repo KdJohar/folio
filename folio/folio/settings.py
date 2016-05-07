@@ -97,7 +97,7 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
-
+SECRET_KEY = 'a3yc73cu$kfw1x3lppf$)k3kv=4@&m66!7o$-qgjp5(7)hi_^x'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 

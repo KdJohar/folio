@@ -1,0 +1,72 @@
+{% extends 'new/base/base.html' %}
+{% block main_content %}
+    <div class="hide-on-large-only" style="padding-top: 20px;">
+     <he></he>
+    </div>
+
+    <!--breadcrumbs end-->
+
+    <!--start container-->
+    <div class="container">
+        <div class="section">
+            <div class="hide-on-med-and-up">
+                <br>
+
+            </div>
+            <!--Form Advance-->
+            {% for book in books %}
+            <div class="row">
+                <div class="col s12 m12 l12">
+                    <div class="card-panel center-align">
+
+                        <div class="row">
+                            <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                 style="margin-right:15px;margin-bottom:15px;">
+                                <a href="">
+                                    <div class='book'>
+                                        <div class='thumbnail' style="padding-top: 10px;">
+                                            <a href="{{ book.get_absolute_url }}">
+                                            <img class="responsive-img"
+                                                 src="{{ book.image }}">
+                                                </a>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="hide-on-med-and-up">
+                                <a><h5 style="text-align: left"><b>{{ book.title }}</b></h5></a>
+                            </div>
+                            <div class="hide-on-small-only">
+                                <a><h5><b> {{ book.title }}</b></h5></a>
+                            </div>
+                            <div class="hide-on-small-only">
+                                <p style="text-align: left;font-size: larger;">
+                                     {{ book.description|truncatewords:50 }}
+                                </p>
+                            </div>
+                            <div style="text-align: left;font-weight: 600;">
+                                By: <a>{{ book.author }}</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    <div class="fixed-action-btn click-to-toggle" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+      <i class="material-icons">share</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating blue"><i class="zmdi zmdi-facebook"></i></a></li>
+      <li><a class="btn-floating red darken-1"><i class="zmdi zmdi-google-plus"></i></a></li>
+      <li><a class="btn-floating blue"><i class="zmdi zmdi-twitter"></i></a></li>
+    </ul>
+  </div>
+
+{% endblock %}

@@ -11,23 +11,15 @@ from haystack.query import SearchQuerySet
 
 def home(request):
     title = 'Download Free Books'
-    books = Book.objects.all().order_by('?')[:8]
-    datalist = Book.objects.all()
-    recent_books = Book.objects.all().order_by('-date')[:16]
+    books = Book.objects.all().order_by('?')[:20]
     tags = Tag.objects.all()
-    return render_to_response('index.html', locals(), context_instance=RequestContext(request))
-
-def itbooks(request):
-    title = 'Download Free Books'
-    books = Book.objects.all().order_by('-date')[:24]
-    tags = Tag.objects.all()
-    return render_to_response('itbooks.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('index2.html', locals(), context_instance=RequestContext(request))
 
 def itbook_detail(request, slug):
     datalist = Book.objects.all()
     book = get_object_or_404(Book, slug=slug)
     title = book.title
-    return render_to_response('book.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('new/bookdetail.html', locals(), context_instance=RequestContext(request))
 
 def google_search(request):
     title = 'google search'
