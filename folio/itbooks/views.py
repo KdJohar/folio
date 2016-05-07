@@ -41,7 +41,7 @@ def search_result(request):
         'page' : page,
         'count':len(books)
     }
-    return render_to_response('searchresults.html', ctx, context_instance=RequestContext(request))
+    return render_to_response('searchr.html', ctx, context_instance=RequestContext(request))
 
 def autocomplete(request):
     if request.method == 'GET':
