@@ -1,71 +1,109 @@
 {% extends 'base/base.html' %}
-{% block maincontent %}
-{% include 'base/googleana.html' %}
-<div class="content-block">
-     <div class="headline">
-         <h1>Books</h1>
-     </div>
-        {% include 'base/googleadds/homepage1.html' %}
-     <div class="content-block portfolio-block clearfix portfolio-col-4">
-        <div class="clearfix">
 
-            <ul id="filtrable" class="clearfix" >
-                {% for tag in tags%}
-               <li ><a href="/search/?query={{ tag.name }}" class="all">{{ tag.name }}</a></li>
-                {% endfor %}
-            </ul>
+{% block main_content %}
+    <section id="content">
 
+
+        <div class="card">
+
+
+            <div class="card-body card-padding">
+                <div class="jumbotron">
+                    <h1>Welcome to Folio!</h1>
+
+                    <p>
+                        Folio is a website designed to provide its users with free e-books. With a strong database
+                        of 6000+ top quality I.T. books, Folio is one of the best directory of free e-books one can
+                        find online.
+
+                    </p>
+
+                </div>
+
+            </div>
         </div>
 
-        <ul class="portfolio thumbnails clearfix no-flip" >
+        <div class="card">
+            <div class="card-header">
+                <h2>Search Tags
+                    <small>You can simply search for specifin......
+                    </small>
+                </h2>
+            </div>
+            <div class="card-body card-padding">
 
+                <div class="btn-demo">
+                    {% for tag in tags %}
+                        <button class="btn btn-default btn-icon-text" style="margin-bottom: 10px;"><i
+                                class="zmdi zmdi-tag"></i>{{ tag.name }}</button>
+                    {% endfor %}
+                </div>
 
+            </div>
+        </div>
+        <div class="block-header">
+            <h2>Books</h2>
+        </div>
+        <div class="row">
             {% for book in books %}
-            <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                <a href="{{ book.get_absolute_url }}">
-                    <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="height:231px;">
-                    <div class="image-overlay-bg">
-                        <div class="image-overlay-link"> </div>
+                <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-header bgm-cyan m-b-20">
+                            <h2>{{ book.title|truncatechars:20 }}</h2>
+                            <ul class="actions actions-alt">
+                                <li class="dropdown">
+                                    <a href="" data-toggle="dropdown">
+                                        <i class="zmdi zmdi-share"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li>
+                                            <a href=""><i class="zmdi zmdi-facebook zmdi-hc-2x"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="zmdi zmdi-twitter zmdi-hc-2x"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href=""><i class="zmdi zmdi-linkedin zmdi-hc-2x"></i></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <a href="{{ book.get_absolute_url }}">
+                                <button class="btn bgm-deeporange btn-float waves-effect"><i
+                                        class="zmdi zmdi-download"></i>
+                                </button>
+                            </a>
+
+                        </div>
+
+                        <div class="card-body card-padding">
+                            <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive"
+                                 style="height:231px;width: 180px;margin-left: 15px;">
+
+                        </div>
                     </div>
-                </a>
-                <div class="rw-details text-center">
-                    <h5>{{ book.title|truncatechars:25 }}</h5>
                 </div>
-
-            </li>
-
             {% endfor %}
-
-        {% if books == None %}
-        <h3>Sorry No Books Found</h3>
-        {% endif %}
-        </ul>
-    </div><!-- End .content-block-->
-    <hr />
-     <div class="headline">
-         <h1> New Books</h1>
-     </div>
-    {% include 'base/googleadds/homepage2.html' %}
-     <div class="content-block portfolio-block clearfix portfolio-col-4">
-        <ul class="portfolio thumbnails clearfix no-flip" >
-            {% for book in recent_books %}
-            <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                <a href="{{ book.get_absolute_url }}">
-                    <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="height:231px;">
-                    <div class="image-overlay-bg">
-                        <div class="image-overlay-link"> </div>
-                    </div>
-                </a>
-                <div class="rw-details text-center">
-                    <h5>{{ book.title|truncatechars:25 }}</h5>
+        </div>
+        <a href="{% url 'itbooks' %}">
+            <button class="btn btn-default btn-icon-text">load more</button>
+        </a> <br/>
+        <div class="col-sm-6">
+            <div class="fb-comments" data-href="http://folio.co.in/" data-numposts="5"></div>
+        </div>
+        <div class="col-sm-6">
+            <div class="fb-page" data-href="https://www.facebook.com/folio.co.in/" data-tabs="timeline"
+                 data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+                 data-show-facepile="true">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="https://www.facebook.com/folio.co.in/"><a
+                            href="https://www.facebook.com/folio.co.in/">folio.co.in</a></blockquote>
                 </div>
+            </div>
+        </div>
 
-            </li>
 
-            {% endfor %}
-        </ul>
-    </div><!-- End .content-block-->
-     <hr />
-
-</div><!-- End .content-block-->
+    </section>
 {% endblock %}

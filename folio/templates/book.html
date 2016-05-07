@@ -1,42 +1,150 @@
 {% extends 'base/base.html' %}
 
-{% block maincontent %}
-    {% include 'base/googleana.html' %}
-    <div class="headline">
-         <h1>{{ book.title }}</h1>
-     </div>
-    {% include 'base/googleadds/homepage1.html' %}
-    <br>
-    <div class="col-md-5 col-sm-4">
-        <div class="blog-img clearfix no-flip" style="width: 200px;height: 231px;">
+{% block main_content %}
+    <section id="content">
+        <div class="container">
 
-                    <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width: 200px;height: 231px;" />
+            <div class="card" id="profile-main">
+                <div class="pm-overview c-overflow">
+                    <div class="pmo-pic">
+                        <div class="p-relative">
+                            <a href="">
+                                <img class="img-responsive" src="{{ book.image }}" alt="">
+                            </a>
 
-                
+                            <div class="dropdown pmop-message">
+                                <a href="{{ book.download }}"
+                                   class="btn bgm-deeporange btn-float z-depth-1">
+                                    <i class="zmdi zmdi-download"></i>
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <a href="{{ book.download }}">
+                                        <button class="btn bgm-green btn-float"><i class="zmdi zmdi-download"></i>
+                                        </button>
+
+                                    </a>
+                                </div>
+                            </div>
+
+                            <a href="{{ book.download }}" class="pmop-edit">
+                                <i class="zmdi zmdi-download"></i> <span class="hidden-xs">Download Ebook</span>
+                            </a>
+                        </div>
+
+
+                        <div class="pmo-stat bgm-cyan">
+                            <h2 class="m-0 c-white">1562</h2> Total Downloads
+                        </div>
+
+                    </div>
+                    <!--
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2>Contact</h2>
+
+                        <ul>
+                            <li><i class="zmdi zmdi-phone"></i> 00971 12345678 9</li>
+                            <li><i class="zmdi zmdi-email"></i> malinda-h@gmail.com</li>
+                            <li><i class="zmdi zmdi-facebook-box"></i> malinda.hollaway</li>
+                            <li><i class="zmdi zmdi-twitter"></i> @malinda (twitter.com/malinda)</li>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <address class="m-b-0 ng-binding">
+                                        44-46 Morningside Road,<br>
+                                        Edinburgh,<br>
+                                        Scotland
+                                    </address>
+                            </li>
+                        </ul>
+                    </div>
+                    -->
+
+
+                </div>
+
+                <div class="pm-body clearfix">
+
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><b>{{ book.title }}</b></h2>
+
+                        </div>
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-equalizer m-r-5"></i> Description</h2>
+
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-view">
+                                {{ book.description }}
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-account m-r-5"></i> Author</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-view">
+                                <dl class="dl-horizontal">
+                                    <dt>{{ book.author }}</dt>
+
+                                </dl>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-account m-r-5"></i> Publisher</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-view">
+                                <dl class="dl-horizontal">
+                                    <dt>{% if book.publisher %}{{ book.publisher }}{% else %}Unknown{% endif %}</dt>
+
+                                </dl>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-info m-r-5"></i> Language</h2>
+
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-view">
+                                <dl class="dl-horizontal">
+                                    <dt>{{ book.language }}</dt>
+                                </dl>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                </div>
             </div>
-        {% include 'base/googleadds/homepage3.html' %}
+        </div>
 
-    </div>
-    <div class="col-md-7 col-sm-8">
-            <p>
-                <h3>Description:</h3>{{ book.description }}
-            </p>
-            <p>
-                <h3>Author:</h3>{{ book.author }}
-            </p>
-            <p>
-                <h3>Publisher:</h3>{{ book.publisher }}
-            </p>
-            <p>
-                <h3>Language:</h3>{{ book.language }}
-            </p>
-         <script type="text/javascript" src="//books.google.com/books/previewlib.js"></script>
-<script type="text/javascript">
-GBS_insertPreviewButtonPopup('ISBN:{{ book.isbn }}');
-</script>
-        <a href="{{ book.download }}" class="btn btn-theme"> Download</a>
-    </div>
-
-
+    </section>
+                <div class="fb-comments" data-href="http://192.168.0.105:8000/itbooks/{{ book.slug }}/" data-numposts="5"></div>
 
 {% endblock %}
+
+{% block comments %}
+
+{% endblock %}
+
+
+

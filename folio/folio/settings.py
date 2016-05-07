@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
 
     'rest_framework',
-
+    'haystack',
     'itbooks',
 
 
@@ -88,6 +88,16 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 100
 }
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://127.0.0.1:9200/',
+        'INDEX_NAME': 'haystack',
+    },
+}
+
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+SECRET_KEY = 'a3yc73cu$kfw1x3lppf$)k3kv=4@&m66!7o$-qgjp5(7)hi_^x'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 

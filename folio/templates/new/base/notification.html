@@ -1,0 +1,11 @@
+<script type="text/javascript">
+    {% if messages %}
+    // Toast Notification
+        {% for message in messages %}
+    $(window).load(function() {
+        Materialize.toast('{{ message }}', 3000, 'rounded')
+
+    });
+        {% endfor %}
+    {% endif %}
+</script>

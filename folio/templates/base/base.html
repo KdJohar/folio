@@ -1,57 +1,87 @@
-{% load staticfiles %}
 <!DOCTYPE html>
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en" > <!--<![endif]-->
- 
-  <head>
-    {% include 'base/meta.html' %}
-    <!-- Bootstrap core CSS -->
-    {% include 'base/scripts.html' %}
-  </head>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
 
-  <body>
-    {% include 'base/facebook.html' %}
-    {% include 'base/navbar.html' %}
-	
-	{% include 'base/searchform.html' %}
+<head>
+    {% include 'base/head.html' %}
+</head>
 
- 	<div class="content-wrapper">  
-		<section class="middle">
-			 <div class="container">
-			 	<div class="row"> 
-			 		
-			 		<!-- Start content-block column-->
-			 		<div class="col-sm-12 col-md-8 col-md-push-4">
-			 			{% block maincontent %}
-                        {% endblock %}
-			 		</div><!-- End content-block column-->
-			 		
-			 		<!-- Start sidebar Column-->
-			 		<div class="col-sm-12 col-md-4 col-md-pull-8">
-			 			{% include 'base/sidebar.html' %}
-			 		</div><!-- End  sidebar Column-->
-			 	</div> <!-- End .row-->
-                <br>
-                     {% include 'base/googleadds/homepage3.html' %}
+<body>
 
-			 </div><!-- End .container-->
-		 </section>  <!-- End .middle-->
 
-        {% include 'base/footer.html' %}
-	</div>
-    <!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster --> 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script>
-		window.jQuery || document.write('<script src="{% static "js/jquery.min.js" %}"><\/script>')
-	</script>
-    {% include 'base/googleadds/shareholic.html' %}
-	<script src="{% static "js/bootstrap.min.js" %}"></script>
-    <script src="{% static "js/jquery.cookie.js" %}"></script>
-	<script src="{% static "js/custom.js" %}"></script>
-	{% include 'base/googleadds/infoaddsintigration.html' %}
-  </body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% include 'base/nav.html' %}
+
+<section id="main" data-layout="layout-1">
+
+    {% block main_content %}
+
+
+
+    {% endblock %}
+</section>
+{% block comments %}
+{% endblock %}
+<footer id="footer">
+    Copyright &copy; 2015 Folio.co.in
+
+</footer>
+
+<!-- Page Loader -->
+{% include 'base/preloader.html' %}
+
+<!-- Older IE warning message -->
+<!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="/static/img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="/static/img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="/static/img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="static/img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="/static/img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>   
+        <![endif]-->
+
+{% include 'base/js.html' %}
+
+</body>
+
 </html>

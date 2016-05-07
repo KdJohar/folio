@@ -1,0 +1,32 @@
+<header id="header" class="page-topbar">
+    <!-- start header nav-->
+    <div class="navbar-fixed">
+        <nav class="navbar-color">
+            <div class="nav-wrapper">
+                <ul class="left">
+                    <li>
+                        <h1 class="logo-wrapper"><a href="{% url 'home' %}" class="brand-logo darken-1"><img
+                                src="/static/ecommerce/images/Folio_logo.png" style="height: 40px;"
+                                alt="Folio logo"></a> <span class="logo-text">Folio</span></h1></li>
+                </ul>
+                <form action="{% url 'search_results' %}" method="get">
+                    <div class="header-search-wrapper hide-on-med-and-down">
+                        <i class="mdi-action-search"></i>
+                        <input type="text" name="query" class="header-search-input z-depth-2"
+                               placeholder="Find your Book Here"/>
+                    </div>
+                </form>
+
+                <ul class="right">
+
+                    <li>
+                    </li>
+                </ul>
+
+                <!-- notifications-dropdown -->
+
+            </div>
+        </nav>
+    </div>
+    <!-- end header nav-->
+</header>

@@ -4,21 +4,22 @@ from django.shortcuts import RequestContext, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 import json
+from .forms import ItSearchForm, SearchForm
+from haystack.inputs import AutoQuery
+from haystack.query import SearchQuerySet
 # Create your views here.
 
 def home(request):
     title = 'Download Free Books'
-    books = Book.objects.all().order_by('?')[:12]
-    datalist = Book.objects.all()
-    recent_books = Book.objects.all().order_by('-date')[:16]
+    books = Book.objects.all().order_by('?')[:20]
     tags = Tag.objects.all()
-    return render_to_response('index.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('index2.html', locals(), context_instance=RequestContext(request))
 
 def itbook_detail(request, slug):
     datalist = Book.objects.all()
     book = get_object_or_404(Book, slug=slug)
     title = book.title
-    return render_to_response('book.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('new/bookdetail.html', locals(), context_instance=RequestContext(request))
 
 def google_search(request):
     title = 'google search'
@@ -26,40 +27,21 @@ def google_search(request):
 
 
 def search_result(request):
-    datalist = Book.objects.all()
-    recent_books = Book.objects.all().order_by('-date')[:16]
     search_query = request.GET.get('query', '')
-    title = 'search '+search_query
     tags = Tag.objects.all()
-    if len(search_query) == 0:
-        title = 'Error'
-        error = 1
-        heading = 'Error: Empty Query'
-        return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
-
-    if len(search_query) <= 2:
-        title = 'Error'
-        error = 2
-        heading = 'Error: Not Enough Characters'
-        return render_to_response('searchresults.html', locals(), context_instance=RequestContext(request))
-    SearchTag.objects.create(name=search_query)
-    heading = 'Results for '+search_query
-    meta_description = '%s books in folio.co.in'%search_query
-    books =  Book.objects.filter(title__icontains=search_query)
-    paginator = Paginator(books, 12)
-    page_num = request.GET.get('page', 1)
-    page = paginator.page(page_num)
-
+    if not search_query == ' ':
+        SearchTag.objects.create(name=search_query)
+        books = SearchQuerySet().filter(title=AutoQuery(search_query)).load_all()
+        paginator = Paginator(books, 10)
+        page_num = request.GET.get('page', 1)
+        page = paginator.page(page_num)
     ctx = {
-        'recent_books':recent_books,
         'tags':tags,
         'query': search_query,
-        'title' : title,
         'page' : page,
-        'heading' : heading,
-        'meta_description' : meta_description
+        'count':len(books)
     }
-    return render_to_response('searchresults.html', ctx, context_instance=RequestContext(request))
+    return render_to_response('searchr.html', ctx, context_instance=RequestContext(request))
 
 def autocomplete(request):
     if request.method == 'GET':

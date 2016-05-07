@@ -6,4 +6,9 @@
 local_settings.py
 .idea/
 static
+<<<<<<< HEAD
+=======
+/folio/localsettings.py
+
+>>>>>>> materialdesign
 folio/folio/localsettings.py

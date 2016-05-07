@@ -1,107 +1,104 @@
 {% extends 'base/base.html' %}
-{% block maincontent %}
-{% include 'base/googleana.html' %}
-<div class="content-block">
-     <div class="headline">
-         <h1>{{ heading }}</h1>
-     </div>
-        {% include 'base/googleadds/homepage1.html' %}
-     <div class="content-block portfolio-block clearfix portfolio-col-4">
-        <div class="clearfix">
 
-            <ul id="filtrable" class="clearfix" >
-               {% for tag in tags %}
-                <li ><a href="/search/?query={{ tag.name }}" class="all">{{ tag.name }}</a></li>
+{% block main_content %}
+    <section id="content">
+
+
+        <div class="container">
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Search Tags
+                        <small>You can simply search for specifin......
+                        </small>
+                    </h2>
+                </div>
+                <div class="card-body card-padding">
+
+                    <div class="btn-demo">
+                        {% for tag in tags %}
+                            <button class="btn btn-default btn-icon-text" style="margin-bottom: 10px;"><i
+                                    class="zmdi zmdi-tag"></i>{{ tag.name }}</button>
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <div class="block-header">
+                <h2>Search Results :- {{ query }}({{ count }})</h2>
+            </div>
+            <div class="row">
+                {% for book in page.object_list %}
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-header bgm-cyan m-b-20">
+                                <h2>{{ book.object.title|truncatechars:20 }}</h2>
+                                <ul class="actions actions-alt">
+                                    <li class="dropdown">
+                                        <a href="" data-toggle="dropdown">
+                                            <i class="zmdi zmdi-share"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-facebook zmdi-hc-2x"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-twitter zmdi-hc-2x"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href=""><i class="zmdi zmdi-linkedin zmdi-hc-2x"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <a href="{{ book.object.get_absolute_url }}">
+                                    <button class="btn bgm-deeporange btn-float waves-effect"><i
+                                            class="zmdi zmdi-download"></i>
+                                    </button>
+                                </a>
+
+                            </div>
+
+                            <div class="card-body card-padding">
+                                <img src="{{ book.object.image }}" alt="{{ book.object.title }}" class="img-responsive"
+                                     style="height:231px;width: 180px;margin-left: 15px;">
+
+                            </div>
+                        </div>
+
+                    </div>
                 {% endfor %}
-            </ul>
+
+
+            </div>
+            {% if page %}
+
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li>
+                            <a href="?query={{ query }}&page={{ page.previous_page_number }}" aria-label="Previous"
+                               style="background-color: #00BCD4;">
+                                <i class="zmdi zmdi-chevron-left" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if page.has_next %}
+                        <li>
+                            <a href="?query={{ query }}&page={{ page.next_page_number }}" aria-label="Next"
+                               style="background-color: #00BCD4;">
+                                <i class="zmdi zmdi-chevron-right" style="color: antiquewhite;"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+            {% endif %}
 
         </div>
 
-        <ul class="portfolio thumbnails clearfix no-flip" >
 
-            {% if error == 1 %}
-                Please Enter a book name or a category name
-
-            {% elif error == 2 %}
-                Please Enter Search Query More Than 3 Characters
-            {% else %}
-                {% if not page.object_list %}
-                    Sorry No Books Found
-                {% else %}
-                    {% for book in page.object_list %}
-                    <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                        <a href="{{ book.get_absolute_url }}">
-                            <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
-                            <div class="image-overlay-bg">
-                                <div class="image-overlay-link"> </div>
-                            </div>
-                        </a>
-                        <div class="rw-details text-center">
-                            <h5>{{ book.title|truncatechars:25 }}</h5>
-                        </div>
-
-                    </li>
-
-                    {% endfor %}
-
-                {% endif %}
-
-
-            {% endif %}
-        </ul>
-        {% if page %}
-        <ul class="portfolio thumbnails clearfix no-flip" >
-
-                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
-                    {% if page.has_previous %}
-                        <a href="?query={{ query }}&page={{ page.previous_page_number }}">
-                        <button type="button" class="btn btn-primary btn-sm" data-iceapw="1" style="background-color: #F45672;border-color: #F45672;">previous</button>
-                        </a>
-                    {% endif %}
-                </li>
-                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-
-                </li>
-                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-
-                </li>
-                <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item text-center">
-                    {% if page.has_next %}
-                        <a href="?query={{ query }}&page={{ page.next_page_number }}">
-                        <button type="button" class="btn btn-primary btn-sm" data-iceapw="1" style="background-color: #F45672;border-color: #F45672;">next</button>
-                        </a>
-                    {% endif %}
-                </li>
-
-        </ul>
-        {% endif %}
-
-    </div><!-- End .content-block-->
-    <hr />
-     <div class="headline">
-         <h1> New Books</h1>
-     </div>
-    {% include 'base/googleadds/homepage2.html' %}
-     <div class="content-block portfolio-block clearfix portfolio-col-4">
-        <ul class="portfolio thumbnails clearfix no-flip" >
-            {% for book in recent_books %}
-            <li data-type="html" class="col-md-3 col-sm-6 col-xs-6 item portfolio-item">
-                <a href="{{ book.get_absolute_url }}">
-                    <img src="{{ book.image }}" alt="{{ book.title }}" class="img-responsive" style="width:200px;height:231px;">
-                    <div class="image-overlay-bg">
-                        <div class="image-overlay-link"> </div>
-                    </div>
-                </a>
-                <div class="rw-details text-center">
-                    <h5>{{ book.title|truncatechars:25 }}</h5>
-                </div>
-
-            </li>
-
-            {% endfor %}
-        </ul>
-    </div><!-- End .content-block-->
-     <hr />
-
-</div><!-- End .content-block-->
+    </section>
 {% endblock %}
