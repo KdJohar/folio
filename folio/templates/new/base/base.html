@@ -99,7 +99,7 @@
 
     </div>
     <!-- END WRAPPER -->
-    <div class="fb-comments" data-width="900"  data-href="http://192.168.0.105:8000/itbooks/{{ book.slug }}/" data-numposts="5"></div>
+    <div class="fb-comments" data-width="900"  data-href="{{ request.build_absolute_uri|urlencode }}/" data-numposts="5"></div>
 </div>
 <!-- END MAIN -->
 
