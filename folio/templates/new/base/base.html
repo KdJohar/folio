@@ -27,7 +27,18 @@
 </head>
 
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- Start Page Loading -->
+{% include 'new/base/google_analytics.html' %}
 <div id="loader-wrapper">
     <div id="loader"></div>
     <div class="loader-section section-left"></div>
@@ -88,7 +99,7 @@
 
     </div>
     <!-- END WRAPPER -->
-
+    <div class="fb-comments" data-width="900"  data-href="http://192.168.0.105:8000/itbooks/{{ book.slug }}/" data-numposts="5"></div>
 </div>
 <!-- END MAIN -->
 
