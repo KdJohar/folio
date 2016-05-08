@@ -17,6 +17,7 @@ def home(request):
 def itbook_detail(request, slug):
     datalist = Book.objects.all()
     book = get_object_or_404(Book, slug=slug)
+    tags = Tag.objects.all()
     title = book.title
     return render_to_response('new/bookdetail.html', locals(), context_instance=RequestContext(request))
 
