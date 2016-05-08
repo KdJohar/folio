@@ -10,7 +10,6 @@ from haystack.query import SearchQuerySet
 # Create your views here.
 
 def home(request):
-    title = 'Download Free Books'
     books = Book.objects.all().order_by('?')[:20]
     tags = Tag.objects.all()
     return render_to_response('index2.html', locals(), context_instance=RequestContext(request))
@@ -39,7 +38,8 @@ def search_result(request):
         'tags':tags,
         'query': search_query,
         'page' : page,
-        'count':len(books)
+        'count':len(books),
+        'title': search_query+' search'
     }
     return render_to_response('searchr.html', ctx, context_instance=RequestContext(request))
 
