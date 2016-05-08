@@ -75,9 +75,10 @@
             <i class="material-icons">share</i>
         </a>
         <ul>
-            <li><a href="http://www.facebook.com/sharer.php?u={{ request.path }}" class="btn-floating blue"><i class="zmdi zmdi-facebook"></i></a></li>
-            <li><a href="https://plus.google.com/share?url={{ request.path }}" class="btn-floating red darken-1"><i class="zmdi zmdi-google-plus"></i></a></li>
-            <li><a href="https://twitter.com/intent/tweet?url={url}&text={title}&via={via}&hashtags={hashtags}" class="btn-floating blue"><i class="zmdi zmdi-twitter"></i></a></li>
+
+            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" class="btn-floating blue"><i class="zmdi zmdi-facebook"></i></a></li>
+            <li><a href="https://plus.google.com/share?url={{request.build_absolute_uri|urlencode}}" class="btn-floating red darken-1"><i class="zmdi zmdi-google-plus"></i></a></li>
+            <li><a href="https://twitter.com/intent/tweet?url={{request.build_absolute_uri|urlencode}}&text={title}&via=kdjohar91&hashtags={hashtags}" class="btn-floating blue"><i class="zmdi zmdi-twitter"></i></a></li>
         </ul>
     </div>
         <!-- //////////////////////////////////////////////////////////////////////////// -->
