@@ -1,13 +1,13 @@
 <aside id="left-sidebar-nav">
     <ul id="slide-out" class="side-nav fixed leftside-navigation">
-         <div class="fb-page" data-href="https://www.facebook.com/folio.co.in/"
-                 data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
-                 data-show-facepile="true">
-                <div class="fb-xfbml-parse-ignore">
-                    <blockquote cite="https://www.facebook.com/folio.co.in/"><a
-                            href="https://www.facebook.com/folio.co.in/">folio.co.in</a></blockquote>
-                </div>
+        <div class="fb-page" data-href="https://www.facebook.com/folio.co.in/"
+             data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
+             data-show-facepile="true">
+            <div class="fb-xfbml-parse-ignore">
+                <blockquote cite="https://www.facebook.com/folio.co.in/"><a
+                        href="https://www.facebook.com/folio.co.in/">folio.co.in</a></blockquote>
             </div>
+        </div>
 
 
         <!--
@@ -33,14 +33,22 @@
         -->
         <ul>
             <li style="text-align: center;background-color: #D13135;color: white;"><b>Search Tags</b>
-                </li>
-            {% for tag in tags %}
-                <li style="text-align: center"><a href="/search/?query={{ tag.name }}">{{ tag.name }}</a>
-                </li>
-            {% endfor %}
+            </li>
+
         </ul>
 
+        <div class="row">
+            {% for tag in tags %}
+            <div style="text-align: center; padding-top: 10px;" class="col s5">
+                <a href="/search/?query={{ tag.name }}">
+                    <div class="chip">
+                        {{ tag.name }}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
 
+        </div>
     </ul>
 
     <a href="#" data-activates="slide-out"
