@@ -4,6 +4,8 @@ from django.shortcuts import RequestContext, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 import json
+import urllib
+from haystack.inputs import Raw
 from .forms import ItSearchForm, SearchForm
 from haystack.inputs import AutoQuery
 from haystack.query import SearchQuerySet
@@ -29,18 +31,22 @@ def google_search(request):
 def search_result(request):
     search_query = request.GET.get('query', '')
     tags = Tag.objects.all()
+    suggestions = SearchQuerySet().spelling_suggestion(search_query)
+    print suggestions
+    print '='*10
     if not search_query == ' ':
         SearchTag.objects.create(name=search_query)
-        books = SearchQuerySet().filter(title=AutoQuery(search_query)).load_all()
+        books = SearchQuerySet().filter(title=Raw(urllib.unquote(search_query).decode('utf8') ))
         paginator = Paginator(books, 10)
         page_num = request.GET.get('page', 1)
         page = paginator.page(page_num)
     ctx = {
         'tags':tags,
-        'query': search_query,
+        'query': urllib.unquote(search_query).decode('utf8'),
         'page' : page,
         'count':len(books),
-        'title': search_query+' search'
+        'title': search_query+' search',
+        #'suggestions' : suggestions
     }
     return render_to_response('searchr.html', ctx, context_instance=RequestContext(request))
 
