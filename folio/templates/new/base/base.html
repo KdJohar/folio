@@ -11,12 +11,12 @@
 <head>
 
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-6195276590359835",
-    enable_page_level_ads: true
-  });
-</script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-6195276590359835",
+            enable_page_level_ads: true
+        });
+    </script>
 
     {% include 'new/base/seo.html/' %}
     <!-- Favicons-->
@@ -37,24 +37,14 @@
 
 <body>
 
-<!-- Google Tag Manager -->
-<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NW6ZLL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NW6ZLL');</script>
-<!-- End Google Tag Manager -->
-
-
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
-  fjs.parentNode.insertBefore(js, fjs);
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+    fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <!-- Start Page Loading -->
@@ -88,30 +78,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
         <!-- START CONTENT -->
         <section id="content">
-        <div class="header-search-wrapper grey hide-on-large-only" style="z-index: 2;position: fixed;">
-            <form action="{% url 'search_results' %}" method="get">
-            <i class="mdi-action-search active"></i>
-            <input type="text" name="query" class="header-search-input z-depth-2" placeholder="Search">
-             </form>
-        </div>
+            <div class="header-search-wrapper grey hide-on-large-only" style="z-index: 2;position: fixed;">
+                <form action="{% url 'search_results' %}" method="get">
+                    <i class="mdi-action-search active"></i>
+                    <input type="text" name="query" class="header-search-input z-depth-2" placeholder="Search">
+                </form>
+            </div>
             {% block main_content %}
             {% endblock %}
             <!--breadcrumbs start-->
-                        <!--end container-->
+            <!--end container-->
         </section>
 
         <!-- END CONTENT -->
         <div class="fixed-action-btn click-to-toggle" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red">
-            <i class="material-icons">share</i>
-        </a>
-        <ul>
+            <a class="btn-floating btn-large red">
+                <i class="material-icons">share</i>
+            </a>
+            <ul>
 
-            <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}" class="btn-floating blue"><i class="zmdi zmdi-facebook"></i></a></li>
-            <li><a href="https://plus.google.com/share?url={{request.build_absolute_uri|urlencode}}" class="btn-floating red darken-1"><i class="zmdi zmdi-google-plus"></i></a></li>
-            <li><a href="https://twitter.com/intent/tweet?url={{request.build_absolute_uri|urlencode}}&text={title}&via=kdjohar91&hashtags={hashtags}" class="btn-floating blue"><i class="zmdi zmdi-twitter"></i></a></li>
-        </ul>
-    </div>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri|urlencode }}"
+                       class="btn-floating blue"><i class="zmdi zmdi-facebook"></i></a></li>
+                <li><a href="https://plus.google.com/share?url={{ request.build_absolute_uri|urlencode }}"
+                       class="btn-floating red darken-1"><i class="zmdi zmdi-google-plus"></i></a></li>
+                <li>
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri|urlencode }}&text={title}&via=kdjohar91&hashtags={hashtags}"
+                       class="btn-floating blue"><i class="zmdi zmdi-twitter"></i></a></li>
+            </ul>
+        </div>
         <!-- //////////////////////////////////////////////////////////////////////////// -->
         <!-- START RIGHT SIDEBAR NAV-->
         {% include 'new/base/sidecart.html' %}
@@ -139,6 +133,20 @@ Scripts
 
 
 {% include 'new/base/notification.html' %}
+
+<!-- clicky -->
+<script type="text/javascript">
+var clicky_site_ids = clicky_site_ids || [];
+clicky_site_ids.push(100958337);
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = '//static.getclicky.com/js';
+  ( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
+})();
+</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100958337ns.gif" /></p></noscript>
 
 
 </body>
