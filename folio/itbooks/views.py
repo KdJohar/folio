@@ -12,7 +12,7 @@ from haystack.query import SearchQuerySet
 # Create your views here.
 
 def home(request):
-    books = Book.objects.all().order_by('?')[:20]
+    books = Book.objects.all().order_by('?')[:10]
     tags = Tag.objects.all()
     return render_to_response('index2.html', locals(), context_instance=RequestContext(request))
 
