@@ -44,4 +44,11 @@
             })
         }
     }
+
+    function downloadBook() {
+        $.ajax({
+                url: {% url 'download' %},
+                data: "id="+{{ book.id }},
+            })
+    }
 </script>

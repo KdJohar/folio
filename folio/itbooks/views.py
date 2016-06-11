@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from .models import Book, SearchTag, Tag
+from .models import Book, SearchTag, Tag, DownloadBook
 from django.shortcuts import RequestContext, get_object_or_404
 from django.core.paginator import Paginator
 from django.http import HttpResponse
@@ -57,10 +57,21 @@ def autocomplete(request):
         return HttpResponse(results, content_type='application/json')
 
 def createsearchtag(request):
-    print '#'*10
     if request.method == 'GET':
         name = request.GET.get('name', '')
 
         SearchTag.objects.create(name=name)
         return HttpResponse(json.dumps({'result':'done'}))
+
+
+def downloaded_book(request):
+
+    if request.method == 'GET':
+        obj = request.GET.get('id', '')
+        book_obj = DownloadBook.objects.get(book_id=obj)
+        print(book_obj)
+        book_obj.download += 1
+        book_obj.save()
+
+        return HttpResponse(json.dumps({'result': 'done'}))
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import GetBook, Book, Tag, SearchTag
+from .models import GetBook, Book, Tag, SearchTag, DownloadBook, SeoMetaData
 # Register your models here.
 
 
@@ -19,7 +19,23 @@ class SearchAdmin(admin.ModelAdmin):
     list_display = ('name', 'date', )
     list_filter = ('date',)
 
+
+class DownloadAdmin(admin.ModelAdmin):
+
+    list_display = ('book', 'download')
+    search_fields = ('book__title', )
+
+class SeoMetaDataAdmin(admin.ModelAdmin):
+
+    list_display = ('book', 'seo_done', )
+    search_fields = ('book__title', )
+    list_filter = ('seo_done'),
+    list_editable = ('seo_done', )
+
+
 admin.site.register(Book, BookAdmin)
 admin.site.register(GetBook, GetBooksAdmin)
 admin.site.register(Tag)
 admin.site.register(SearchTag, SearchAdmin)
+admin.site.register(DownloadBook, DownloadAdmin)
+admin.site.register(SeoMetaData, SeoMetaDataAdmin)

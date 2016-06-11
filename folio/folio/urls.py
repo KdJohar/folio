@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^search/$', 'itbooks.views.search_result', name='search_results'),
     url(r'^autocomplete/$', 'itbooks.views.autocomplete', name='autocomplete'),
     url(r'^searchtag/$', 'itbooks.views.createsearchtag', name='search_tag'),
+    url(r'^downloadbook/$', 'itbooks.views.downloaded_book', name='download'),
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url(r'^hssearch/', include('haystack.urls')),
 

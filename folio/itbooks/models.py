@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.urlresolvers import reverse
+from django.db.models import signals
 # Create your models here.
 
 class GetBook(models.Model):
@@ -37,6 +38,31 @@ class Book(models.Model):
     def __unicode__(self):
         return self.title
 
+class DownloadBook(models.Model):
+
+    book = models.OneToOneField(Book)
+    download = models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return self.book.title
+    class Meta:
+        verbose_name_plural = "Download"
+        ordering = ['-download']
+
+class SeoMetaData(models.Model):
+
+    book = models.OneToOneField(Book)
+    keywords = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    seo_done = models.BooleanField(default=False)
+
+    def __unicode__(self):
+        return self.book.title
+
+    class Meta:
+        verbose_name_plural = "Book Page Metadata"
+
+
 class Tag(models.Model):
     name = models.CharField(max_length=100)
 
@@ -49,3 +75,11 @@ class SearchTag(models.Model):
 
     def __unicode__(self):
         return self.name
+
+def create_download_seo_for_book(sender, instance, created, **kwargs):
+    if created:
+        DownloadBook.objects.create(book=instance)
+        SeoMetaData.objects.create(book=instance)
+
+
+signals.post_save.connect(create_download_seo_for_book, sender=Book)
