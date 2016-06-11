@@ -27,3 +27,21 @@
 <script type="text/javascript" src="/static/ecommerce/js/plugins.min.js"></script>
 <!--custom-script.js - Add your own theme custom JS-->
 <script type="text/javascript" src="/static/ecommerce/js/custom-script.js"></script>
+
+<script>
+    function formSubmit() {
+        var input = document.getElementById('formInput').value;
+
+        if (input.length > 0) {
+            var formData = {
+                'name': input
+
+            };
+            // process the form
+            $.ajax({
+                url: {% url 'search_tag' %},
+                data: "name="+input,
+            })
+        }
+    }
+</script>

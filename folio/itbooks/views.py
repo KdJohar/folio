@@ -9,6 +9,7 @@ from haystack.inputs import Raw
 from .forms import ItSearchForm, SearchForm
 from haystack.inputs import AutoQuery
 from haystack.query import SearchQuerySet
+import json
 # Create your views here.
 
 def home(request):
@@ -32,10 +33,7 @@ def search_result(request):
     search_query = request.GET.get('query', '')
     tags = Tag.objects.all()
     suggestions = SearchQuerySet().spelling_suggestion(search_query)
-    print suggestions
-    print '='*10
     if not search_query == ' ':
-        SearchTag.objects.create(name=search_query)
         books = SearchQuerySet().filter(title=Raw(urllib.unquote(search_query).decode('utf8') ))
         paginator = Paginator(books, 10)
         page_num = request.GET.get('page', 1)
@@ -57,3 +55,12 @@ def autocomplete(request):
         suggestions_data = [r.title for r in suggestions]
         results = json.dumps({'title':suggestions_data})
         return HttpResponse(results, content_type='application/json')
+
+def createsearchtag(request):
+    print '#'*10
+    if request.method == 'GET':
+        name = request.GET.get('name', '')
+
+        SearchTag.objects.create(name=name)
+        return HttpResponse(json.dumps({'result':'done'}))
+

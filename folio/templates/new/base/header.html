@@ -9,12 +9,13 @@
                                 src="/static/ecommerce/images/Folio_logo.png" style="height: 40px;"
                                 alt="Folio logo"></a> <span class="logo-text">Folio</span></h1></li>
                 </ul>
-                <form action="{% url 'search_results' %}" method="get">
+                <form onsubmit="formSubmit();" id="searchForm" action="{% url 'search_results' %}" method="get">
                     <div class="header-search-wrapper hide-on-med-and-down">
                         <i class="mdi-action-search"></i>
-                        <input type="text" name="query" class="header-search-input z-depth-2"
+                        <input id="formInput" type="text" name="query" class="header-search-input z-depth-2"
                                placeholder="Find your Book Here"/>
                     </div>
+
                 </form>
 
                 <ul class="right">
