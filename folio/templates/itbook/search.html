@@ -1,0 +1,94 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <div class="hide-on-large-only" style="padding-top: 20px;">
+        <br>
+    </div>
+
+    <!--breadcrumbs end-->
+
+    <!--start container-->
+    <div class="container center">
+        <h1>Results for - {{ query }}({{ count }})</h1>
+        <div class="section">
+
+            <div class="hide-on-med-and-up">
+                <br>
+
+            </div>
+            <!--Form Advance-->
+            {% for book in page.object_list %}
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="card-panel center-align">
+
+                            <div class="row">
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right:15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <a href="{{ book.object.get_absolute_url }}">
+                                                    <img class="responsive-img"
+                                                         src="{{ book.object.image }}" alt="{{ book.object.title }}">
+                                                </a>
+                                            </div>
+
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="hide-on-med-and-up">
+                                    <a href="{{ book.object.get_absolute_url }}"><h5 style="text-align: left">
+                                        <b>{{ book.object.title }}</b></h5></a>
+                                </div>
+                                <div class="hide-on-small-only">
+                                    <a href="{{ book.object.get_absolute_url }}"><h5><b> {{ book.object.title }}</b>
+                                    </h5></a>
+                                </div>
+                                <div class="hide-on-small-only">
+                                    <p style="text-align: left;font-size: larger;">
+                                        {{ book.object.description|truncatewords:50 }}
+                                    </p>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    By: <a>{{ book.object.author }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    Category: <a href="{{ book.object.category.category_get_absolute_url }}">{{ book.object.category }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+        {% if page %}
+            <div style="text-align: center">
+                <ul class="pagination">
+                    {% if page.has_previous %}
+                        <li>
+                            <a class="btn-floating btn-large waves-effect waves-light secondary-color"
+                               href="?query={{ query }}&page={{ page.previous_page_number }}" aria-label="Previous">
+                                <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if page.has_next %}
+                        <li>
+                            <a class="btn-floating btn-large waves-effect waves-light secondary-color"
+                               href="?query={{ query }}&page={{ page.next_page_number }}" aria-label="Next">
+                                <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+
+        {% endif %}
+    </div>
+
+
+{% endblock %}

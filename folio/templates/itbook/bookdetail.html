@@ -1,0 +1,247 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <!--start container-->
+    <div class="container">
+        <div class="section">
+            <!--Form Advance-->
+            <div class="section">
+
+                <div class="row">
+
+                    <div class="col s12 m12 l12">
+
+                        <div class="card-panel center-align">
+                            <div>
+                                <a><h1 style="text-align: center"><b>{{ book.title }}</b></h1></a>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col s5 m3 l3 z-depth-1 hoverable"
+                                     style="margin-right:15px;margin-bottom:15px;">
+
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img"
+                                                     src="{{ book.image }}" alt="{{ book.title }}">
+                                            </div>
+
+                                        </div>
+
+                                </div>
+
+                                <div style="text-align: left;font-weight: 600;">
+                                    ISBN: <a>{{ book.isbn }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    AUTHOR: <a>{{ book.author }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    PUBLISHER: <a>{{ book.publisher }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    PAGES: <a>{{ book.pages }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    LANGUAGE: <a>{{ book.language }}</a>
+                                </div>
+                                <div style="text-align: left;font-weight: 600;">
+                                    FORMAT: <a>PDF</a>
+                                </div>
+                                <br>
+                                <!--
+                                <div>
+                                    <a class="btn-floating btn-large waves-effect waves-light red left"><i
+                                            class="material-icons">pageview</i></a>
+                                </div>
+
+                                -->
+                                <br>
+                                <br>
+                                <br>
+                                <div>
+                                    <a onclick="downloadBook()" target="_blank" href="{{ book.download }}" class="waves-effect waves-light btn left"><i class="fa fa-download" aria-hidden="true"></i>
+</a>
+
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div>
+                                <p style="text-align: left;font-size: larger;">
+                                   {{ book.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+                <div class="row">
+                    <div class="col s4 l3">
+                        <div class="hide-on-large-only" style="margin-top: 70px;">
+                            <hr>
+                        </div>
+
+                        <div class="thumbnail z-depth-1">
+                            <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                        </div>
+
+                    </div>
+                    <div class="col s8 l9">
+                        <h5>Introducing pythonIntroducing pythonIntroducing</h5>
+
+                        <div class="divider"></div>
+                        <div class="row">
+                            <div class="col l6">
+                                <div class="book-price">
+                                    <p><i class="tiny material-icons">insert_chart</i>In Stock</p>
+
+                                    <p style="font-size: x-large">List Price: 500</p>
+                                    <a class="btn-floating btn-large waves-effect waves-light red"><i
+                                            class="material-icons">pageview</i></a>
+                                    <a class="waves-effect waves-light btn"><i
+                                            class="material-icons left">shopping_cart</i>Add to cart</a>
+                                </div>
+                            </div>
+                            <div class="col l6 hide-on-small-only">
+                                <div class="delivery-info">
+
+                                    <p>Avaiable</p>
+
+                                    <p>Avaiable</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 20px">
+                    <div class="col s12">
+                        <ul class="tabs">
+                            <li class="tab col s3"><a class="active" href="#test1">Information</a></li>
+                            <li class="tab col s3"><a href="#test2">Description</a></li>
+                            <li class="tab col s3"><a href="#test4">Review</a></li>
+                        </ul>
+                    </div>
+                    <div id="test1" class="col s12">Information Here</div>
+                    <div id="test2" class="col s12">Description Here</div>
+                    <div id="test4" class="col s12">Review Here</div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12 m12 l12">
+                        <div class="card-panel center-align">
+                            <h4 class="header2">Related Books</h4>
+
+                            <div class="row">
+                                <div class="col hide-on-small-only" style="margin-left: 25px;">
+                                    <hr>
+                                </div>
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right:15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                                            </div>
+                                            <h5 class="center-align">
+                                                &#8377;500
+                                            </h5>
+
+                                            <div class="book-title center-align" style="padding-bottom:10px;">
+                                                <a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right: 15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                                            </div>
+                                            <h5 class="center-align">
+                                                &#8377;500
+                                            </h5>
+
+                                            <div class="book-title center-align" style="padding-bottom:10px;">
+                                                <a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right: 15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                                            </div>
+                                            <h5 class="center-align">
+                                                &#8377;500
+                                            </h5>
+
+                                            <div class="book-title center-align" style="padding-bottom:10px;">
+                                                <a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right: 15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                                            </div>
+                                            <h5 class="center-align">
+                                                &#8377;500
+                                            </h5>
+
+                                            <div class="book-title center-align" style="padding-bottom:10px;">
+                                                <a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="col s5 m3 l2 z-depth-1 hoverable"
+                                     style="margin-right: 15px;margin-bottom:15px;">
+                                    <a href="">
+                                        <div class='book'>
+                                            <div class='thumbnail' style="padding-top: 10px;">
+                                                <img class="responsive-img" src="/static/ecommerce/images/python.jpg">
+                                            </div>
+                                            <h5 class="center-align">
+                                                &#8377;500
+                                            </h5>
+
+                                            <div class="book-title center-align" style="padding-bottom:10px;">
+                                                <a class="btn-floating yellow darken-1"><i class="material-icons">shopping_cart</i></a>
+
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////// -->
+    </div>
+    <div class="fb-comments" data-width="900"  data-href="http://folio.co.in/itbooks/{{ book.slug }}" data-numposts="5"></div>
+
+{% endblock %}

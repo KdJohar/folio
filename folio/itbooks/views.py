@@ -1,8 +1,8 @@
-from django.shortcuts import render_to_response
-from .models import Book, SearchTag, Tag, DownloadBook
+from django.shortcuts import render_to_response, redirect
+from .models import Book, SearchTag, Tag, DownloadBook, Category
 from django.shortcuts import RequestContext, get_object_or_404
 from django.core.paginator import Paginator
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 import json
 import urllib
 from haystack.inputs import Raw
@@ -14,19 +14,38 @@ import json
 
 def home(request):
     books = Book.objects.all().order_by('?')[:10]
-    tags = Tag.objects.all()
-    return render_to_response('index2.html', locals(), context_instance=RequestContext(request))
+    tags = Category.objects.all()
+    return render_to_response('itbook/index.html', locals(), context_instance=RequestContext(request))
+
+def all_category(request):
+    categories = Category.objects.all()
+    title = 'All Categories'
+    return render_to_response('itbook/all_categories.html', locals(), context_instance=RequestContext(request))
 
 def itbook_detail(request, slug):
     datalist = Book.objects.all()
     book = get_object_or_404(Book, slug=slug)
-    tags = Tag.objects.all()
+    tags = Category.objects.all()
     title = book.title
-    return render_to_response('new/bookdetail.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('itbook/bookdetail.html', locals(), context_instance=RequestContext(request))
 
-def google_search(request):
-    title = 'google search'
-    return render_to_response('googlesearch.html', locals(), context_instance=RequestContext(request))
+def category(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    books = Book.objects.filter(category=category.id)
+    paginator = Paginator(books, 10)
+    page_num = request.GET.get('page', 1)
+    page = paginator.page(page_num)
+    page_count = 10*int(page_num)
+
+
+    ctx = {
+        'page_count': page_count,
+        'page': page,
+        'category': category,
+        #'title': search_query + ' search',
+    }
+
+    return render_to_response('itbook/category.html', locals(), context_instance=RequestContext(request))
 
 
 def search_result(request):
@@ -46,7 +65,7 @@ def search_result(request):
         'title': search_query+' search',
         #'suggestions' : suggestions
     }
-    return render_to_response('searchr.html', ctx, context_instance=RequestContext(request))
+    return render_to_response('itbook/search.html', ctx, context_instance=RequestContext(request))
 
 def autocomplete(request):
     if request.method == 'GET':

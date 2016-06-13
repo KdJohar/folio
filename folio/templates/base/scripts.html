@@ -1,0 +1,37 @@
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+<script src="https://use.fontawesome.com/c29cec8258.js"></script>
+
+<script>
+    function formSubmit() {
+        var input = document.getElementById('formInput').value;
+
+        if (input.length > 0) {
+            var formData = {
+                'name': input
+
+            };
+            // process the form
+            $.ajax({
+                url: {% url 'search_tag' %},
+                data: "name=" + input,
+            })
+        }
+    }
+
+    function downloadBook() {
+        $.ajax({
+            url: {% url 'download' %},
+            data: "id=" +{{ book.id }},
+        })
+    }
+
+    $(".sidebar-collapse").sideNav();
+    $('.sidebar-collapse').sideNav({
+
+      menuWidth: 300, // Default is 240
+      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    }
+  );
+  $('.collapsible').collapsible();
+</script>

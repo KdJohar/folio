@@ -11,13 +11,28 @@ class GetBook(models.Model):
     class Meta:
         ordering = ['title']
 
+class Category(models.Model):
+    name = models.CharField(max_length=250,unique=True)
+    slug = models.SlugField(max_length=250, unique=True)
 
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['name']
+
+    def get_count(self):
+        return Book.objects.filter(category=self.id).count()
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
 
 class Book(models.Model):
 
     title = models.CharField(max_length=250)
     isbn = models.CharField(max_length=250, unique=True)
     slug = models.SlugField(max_length=250, unique=True)
+    category = models.ForeignKey(Category, blank=True, null=True)
     description = models.TextField(null=True)
     image = models.URLField(unique=True, null=True, blank=True)
     publisher = models.CharField(max_length=250, null=True, blank=True)

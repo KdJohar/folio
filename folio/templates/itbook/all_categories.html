@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% block main_content %}
+    <div class="hide-on-large-only" style="padding-top: 20px;">
+        <he></he>
+    </div>
+
+    <!--breadcrumbs end-->
+
+    <!--start container-->
+    <div class="container center-align">
+        <h1>All Categories</h1>
+
+        <div class="row">
+
+            {% for category in categories %}
+                <div class="col s6 m4 l4">
+                    <a href="{{ category.get_absolute_url }}">
+                        <div class="chip category-chip">
+                            {{ category.name }}
+                            <i>({{ category.get_count }})</i>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
