@@ -19,7 +19,7 @@ def home(request):
 
 def all_category(request):
     categories = Category.objects.all()
-    title = 'All Categories'
+    title = 'Categories'
     return render_to_response('itbook/all_categories.html', locals(), context_instance=RequestContext(request))
 
 def itbook_detail(request, slug):
@@ -31,6 +31,7 @@ def itbook_detail(request, slug):
 
 def category(request, slug):
     category = get_object_or_404(Category, slug=slug)
+    title = category.name
     books = Book.objects.filter(category=category.id)
     paginator = Paginator(books, 10)
     page_num = request.GET.get('page', 1)
@@ -42,7 +43,8 @@ def category(request, slug):
         'page_count': page_count,
         'page': page,
         'category': category,
-        #'title': search_query + ' search',
+        'title': 'Download '+title + ' ebooks'
+        #'title': search_query + ' search','ebooks'
     }
 
     return render_to_response('itbook/category.html', locals(), context_instance=RequestContext(request))
@@ -62,7 +64,7 @@ def search_result(request):
         'query': urllib.unquote(search_query).decode('utf8'),
         'page' : page,
         'count':len(books),
-        'title': search_query+' search',
+        'title': 'search for '+'search_query+' 'ebooks',
         #'suggestions' : suggestions
     }
     return render_to_response('itbook/search.html', ctx, context_instance=RequestContext(request))
