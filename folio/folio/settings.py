@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
-
+    'pipeline',
     'rest_framework',
     'haystack',
     'itbooks',
@@ -55,7 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.gzip.GZipMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
 )
 
 ROOT_URLCONF = 'folio.urls'
@@ -83,6 +83,7 @@ USE_TZ = True
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
 
 REST_FRAMEWORK = {
@@ -106,6 +107,37 @@ SECRET_KEY = 'a3yc73cu$kfw1x3lppf$)k3kv=4@&m66!7o$-qgjp5(7)hi_^x'
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+
+PIPELINE_CSS_COMPRESSOR = 'pipeline.compressors.cssmin.CSSMinCompressor'
+PIPELINE_CSSMIN_BINARY = 'cssmin'
+PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.slimit.SlimItCompressor'
+
+PIPELINE = {
+    'STYLESHEETS': {
+        'my_app': {
+            'source_filenames': (
+            'css/materialize.min.css',
+            'css/style.css',
+            'fonts/css/font-awesome.min.css',
+            ),
+            'output_filename': 'pipline_min.css',
+            'extra_context': {
+                'media': 'screen,projection',
+            },
+        },
+    },
+    'JAVASCRIPT': {
+        'my_app': {
+            'source_filenames': (
+            'js/materialize.min.js',
+            ),
+            'output_filename': 'pipeline_min.js',
+        }
+    }
+}
+
 
 try:
     from localsettings import *
